@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 interface HeaderProps {
   onSearch: (searchTerm: string) => void;
@@ -26,7 +26,7 @@ class Header extends Component<HeaderProps, HeaderState> {
   };
 
   handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       this.handleSearch();
     }
   };
@@ -39,14 +39,14 @@ class Header extends Component<HeaderProps, HeaderState> {
             type="text"
             value={this.state.searchTerm}
             onChange={this.handleInputChange}
-            onKeyPress={this.handleKeyPress} 
+            onKeyPress={this.handleKeyPress}
             className="search-input"
             placeholder="Search"
           />
           <button onClick={this.handleSearch} className="search-button">
             <img
-              className='search-img'
-              src='https://cdn3.iconfinder.com/data/icons/feather-5/24/search-512.png'
+              className="search-img"
+              src="https://cdn3.iconfinder.com/data/icons/feather-5/24/search-512.png"
             />
           </button>
         </div>

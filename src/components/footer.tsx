@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface FooterProps {
   searchResults: SearchResult[];
@@ -16,7 +16,7 @@ const Footer: React.FC<FooterProps> = ({ searchResults }) => {
       <ul>
         {searchResults.map((result, index) => (
           <li key={index}>
-            <strong>Name:</strong> {result.name}  <br />
+            <strong>Name:</strong> {result.name} <br />
             <strong>Description:</strong> {result.description}
           </li>
         ))}
