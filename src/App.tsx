@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// App.tsx
+import React, { Component } from 'react';
+
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+import Header from './components/header';
+import Footer from './components/footer';
+import Search from './components/search';
+
+
+
+interface AppState {
+  searchResults: SearchResult[];
+  searchTerm: string;
 }
 
-export default App
+interface SearchResult {
+  name: string;
+  description: string;
+}
+
+class App extends Component<{}, AppState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      searchResults: [],
+      searchTerm: '',
+    };
+  }
+
+  componentDidMount() {
+    const savedSearchTerm = localStorage.getItem('searchTerm') || '';
+    this.setState({ searchTerm: savedSearchTerm });
+  }
+
+  handleSearch = (searchTerm: string) => {
+    localStorage.setItem('searchTerm', searchTerm);
+    this.setState({ searchTerm });
+  };
+
+  handleSearchResults = (searchResults: SearchResult[]) => {
+    this.setState({ searchResults });
+  };
+
+  render() {
+    return (
+      <div className="app">
+        <Header
+          onSearch={this.handleSearch}
+          initialSearchTerm={this.state.searchTerm}
+        />
+        <Search
+          onSearchResults={this.handleSearchResults}
+          searchTerm={this.state.searchTerm}
+        />
+        <Footer searchResults={this.state.searchResults} />
+      </div>
+    );
+  }
+}
+
+export default App;
