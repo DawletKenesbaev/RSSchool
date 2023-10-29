@@ -1,42 +1,82 @@
-#root {
-  max-width: 1280px;
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.app {
+  height: 100vh;
+  padding: 0;
+  background: rgb(43, 116, 226);
+  width: 100%;
+}
+
+/* header */
+
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30%;
+  border-bottom: 1px solid blue;
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5); /* Adjust the shadow values as needed */
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.search-container {
+  width: 500px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 10px;
+  font-size: 26px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.search-button {
+  background: #e3e2e2; 
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+.search-img {
+  width: 30px;
+}
+.fa-search {
+  font-size: 20px;
 }
 
-.card {
-  padding: 2em;
+.footer {
+  height: 70%;
 }
 
-.read-the-docs {
-  color: #888;
+/* footer */
+
+
+
+.footer {
+text-align: center;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}
+.footer ul {
+width: 40%;
+text-align: start;
+}
+.footer li {
+list-style: none;
 }
