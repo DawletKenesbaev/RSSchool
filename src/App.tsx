@@ -1,62 +1,40 @@
-import React, { Component } from 'react';
-
-import './App.css'
-
+import React, { useState, useEffect } from 'react';
+import './App.css';
 
 import Header from './components/header';
 import Footer from './components/footer';
 import Search from './components/search';
-
-
-
-interface AppState {
-  searchResults: SearchResult[];
-  searchTerm: string;
-}
 
 interface SearchResult {
   name: string;
   description: string;
 }
 
-class App extends Component<{}, AppState> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      searchResults: [],
-      searchTerm: '',
-    };
-  }
+const App: React.FC = () => {
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
-  componentDidMount() {
+  useEffect(() => {
     const savedSearchTerm = localStorage.getItem('searchTerm') || '';
-    this.setState({ searchTerm: savedSearchTerm });
-  }
+    setSearchTerm(savedSearchTerm);
+  }, []);
 
-  handleSearch = (searchTerm: string) => {
+  const handleSearch = (searchTerm: string) => {
     localStorage.setItem('searchTerm', searchTerm);
-    this.setState({ searchTerm });
+    setSearchTerm(searchTerm);
   };
 
-  handleSearchResults = (searchResults: SearchResult[]) => {
-    this.setState({ searchResults });
+  const handleSearchResults = (searchResults: SearchResult[]) => {
+    setSearchResults(searchResults);
   };
 
-  render() {
-    return (
-      <div className="app">
-        <Header
-          onSearch={this.handleSearch}
-          initialSearchTerm={this.state.searchTerm}
-        />
-        <Search
-          onSearchResults={this.handleSearchResults}
-          searchTerm={this.state.searchTerm}
-        />
-        <Footer searchResults={this.state.searchResults} />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="app">
+      <Header onSearch={handleSearch} initialSearchTerm={searchTerm} />
+      <Search onSearchResults={handleSearchResults} searchTerm={searchTerm} />
+      <Footer searchResults={searchResults} />
+    </div>
+  );
+};
 
 export default App;
